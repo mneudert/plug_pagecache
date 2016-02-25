@@ -1,2 +1,0 @@
-defmodule PlugPagecache do
-end
