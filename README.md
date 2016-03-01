@@ -12,7 +12,10 @@ use Mix.Config
 
 config :plug_pagecache,
   :caches,
-    my_cache: [
+    my_agent_cache: [
+      adapter: Plug.PageCache.Adapter.Agent
+    ],
+    my_ets_cache: [
       adapter: Plug.PageCache.Adapter.ETS,
       table:   :my_ets_table
     ]
