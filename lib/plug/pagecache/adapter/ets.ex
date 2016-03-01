@@ -19,4 +19,18 @@ defmodule Plug.PageCache.Adapter.ETS do
 
     { :ok, %{ ets_tid: ets_tid }}
   end
+
+
+  def load(state, path) do
+    case :ets.lookup(state.ets_tid, path) do
+      [{ ^path, page }] -> { state, page }
+      _                 -> { state, nil }
+    end
+  end
+
+  def save(state, path, page) do
+    _ = :ets.insert(state.ets_tid, { path, page })
+
+    { state, :ok }
+  end
 end
