@@ -9,6 +9,8 @@ defmodule Plug.PageCache.Adapter.ETSTest do
     opts = [ name: :faulty_config ]
     log  = capture_io :user, fn ->
       ETS.start_link(opts)
+
+      :timer.sleep(50)
     end
 
     assert String.contains?(log, to_string(opts[:name]))
