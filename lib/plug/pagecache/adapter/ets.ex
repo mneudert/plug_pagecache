@@ -28,6 +28,12 @@ defmodule Plug.PageCache.Adapter.ETS do
     end
   end
 
+  def remove(state, path) do
+    _ = :ets.delete(state.ets_tid, path)
+
+    { state, :ok }
+  end
+
   def save(state, path, page) do
     _ = :ets.insert(state.ets_tid, { path, page })
 

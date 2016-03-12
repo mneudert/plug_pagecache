@@ -28,6 +28,12 @@ defmodule Plug.PageCache.Adapter do
         { :reply, res, state }
       end
 
+      def handle_call({ :remove, path }, _from, state) do
+        { state, res } = remove(state, path)
+
+        { :reply, res, state }
+      end
+
       def handle_call({ :save, path, page }, _from, state) do
         { state, res } = save(state, path, page)
 
@@ -41,6 +47,11 @@ defmodule Plug.PageCache.Adapter do
   Tries to load a page from the cache by its full path.
   """
   @callback load(state :: Keyword.t, path :: String.t) :: String.t | nil
+
+  @doc """
+  Removes a cache entry.
+  """
+  @callback remove(state :: Keyword.t, path :: String.t) :: :ok
 
   @doc """
   Saves a page to the cache.

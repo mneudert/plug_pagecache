@@ -17,14 +17,17 @@ defmodule Plug.PageCache.Adapter.ETSPlugTest do
 
   test "plugging" do
     cache = Config.cache_id(:ets)
-    page  = "CACHED"
     path  = "/test/adapter/ets_plug"
 
     assert "OK" == conn(:get, path) |> Router.call([]) |> Map.get(:resp_body)
     assert "OK" == GenServer.call(cache, { :load, path })
 
-    :ok = GenServer.call(cache, { :save, path, page })
+    :ok = GenServer.call(cache, { :save, path, "CACHED" })
 
     assert "CACHED" == conn(:get, path) |> Router.call([]) |> Map.get(:resp_body)
+
+    :ok = GenServer.call(cache, { :remove, path })
+
+    assert "OK" == conn(:get, path) |> Router.call([]) |> Map.get(:resp_body)
   end
 end

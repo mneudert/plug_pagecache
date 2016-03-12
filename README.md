@@ -83,6 +83,18 @@ Any `not nil` response body will be cached after dispatching using the
 served path as the key. If there is a cached response available it will be
 sent with the response status `200` (`OK`) to the client.
 
+### Invalidation
+
+As there is no automatic expiration/invalidation these things
+have to be done manually:
+
+```elixir
+cache   = Config.cache_id(:my_configured_cache)
+request = { :remove, "/path/to/be/invalidated" }
+
+:ok = GenServer.call(cache, request)
+```
+
 
 ## Available Adapters
 
