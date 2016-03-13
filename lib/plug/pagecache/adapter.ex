@@ -22,6 +22,12 @@ defmodule Plug.PageCache.Adapter do
         GenServer.start_link(__MODULE__, opts, name: opts[:id])
       end
 
+      def handle_call(:clean, _from, state) do
+        { state, res } = clean(state)
+
+        { :reply, res, state }
+      end
+
       def handle_call({ :load, path }, _from, state) do
         { state, res } = load(state, path)
 
@@ -42,6 +48,11 @@ defmodule Plug.PageCache.Adapter do
     end
   end
 
+
+  @doc """
+  Cleans a cache by removing all entries.
+  """
+  @callback clean(state :: Keyword.t) :: :ok
 
   @doc """
   Tries to load a page from the cache by its full path.

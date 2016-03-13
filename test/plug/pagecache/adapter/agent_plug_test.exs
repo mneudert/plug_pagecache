@@ -30,4 +30,19 @@ defmodule Plug.PageCache.Adapter.AgentPlugTest do
 
     assert "OK" == conn(:get, path) |> Router.call([]) |> Map.get(:resp_body)
   end
+
+  test "cleaning" do
+    cache = Config.cache_id(:agent)
+
+    :ok = GenServer.call(cache, { :save, "/bar", "bar" })
+    :ok = GenServer.call(cache, { :save, "/foo", "foo" })
+
+    assert "bar" == GenServer.call(cache, { :load, "/bar" })
+    assert "foo" == GenServer.call(cache, { :load, "/foo" })
+
+    :ok = GenServer.call(cache, :clean)
+
+    assert nil == GenServer.call(cache, { :load, "/bar" })
+    assert nil == GenServer.call(cache, { :load, "/foo" })
+  end
 end

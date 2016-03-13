@@ -21,6 +21,12 @@ defmodule Plug.PageCache.Adapter.ETS do
   end
 
 
+  def clean(state) do
+    _ = :ets.delete_all_objects(state.ets_tid)
+
+    { state, :ok }
+  end
+
   def load(state, path) do
     case :ets.lookup(state.ets_tid, path) do
       [{ ^path, page }] -> { state, page }

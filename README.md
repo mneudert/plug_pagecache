@@ -95,6 +95,15 @@ request = { :remove, "/path/to/be/invalidated" }
 :ok = GenServer.call(cache, request)
 ```
 
+Cleaning all entries is also possible:
+
+```elixir
+cache   = Config.cache_id(:my_configured_cache)
+request = :clean
+
+:ok = GenServer.call(cache, request)
+```
+
 
 ## Available Adapters
 
