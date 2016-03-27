@@ -20,7 +20,8 @@ defmodule Plug.PageCache.Adapter.ETS do
       table -> :ets.new(table, [ :protected, :named_table, :set ])
     end
 
-    { :ok, %{ ets_tid: ets_tid }}
+    { :ok, %{ auto_expire: opts[:auto_expire] || 0,
+              ets_tid:     ets_tid }}
   end
 
 
@@ -34,8 +35,13 @@ defmodule Plug.PageCache.Adapter.ETS do
 
   def load(state, path) do
     case :ets.lookup(state.ets_tid, path) do
-      [{ ^path, page }] -> { state, page }
-      _                 -> { state, nil }
+      [{ ^path, page, expire_after }] ->
+        case :os.system_time(:seconds) <= expire_after do
+          true  -> { state, page }
+          false -> { state, nil }
+        end
+
+      _ -> { state, nil }
     end
   end
 
@@ -46,7 +52,8 @@ defmodule Plug.PageCache.Adapter.ETS do
   end
 
   def save(state, path, page) do
-    _ = :ets.insert(state.ets_tid, { path, page })
+    expire_after = :os.system_time(:seconds) + state.auto_expire
+    _            = :ets.insert(state.ets_tid, { path, page, expire_after })
 
     { state, :ok }
   end

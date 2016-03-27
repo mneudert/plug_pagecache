@@ -12,4 +12,9 @@ config :plug_pagecache,
     ets: [
       adapter: Plug.PageCache.Adapter.ETS,
       table:   :plug_pagecache_ets
+    ],
+    ets_expire: [
+      adapter:     Plug.PageCache.Adapter.ETS,
+      auto_expire: 1,
+      table:       :plug_pagecache_ets_expire
     ]

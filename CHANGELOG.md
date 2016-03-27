@@ -4,6 +4,7 @@
 
 - Enhancements
     - Agent caches can auto expire keys after configurable seconds
+    - ETS caches can auto expire keys after configurable seconds
 
 - Backwards incompatible changes
     - Minimum required elixir version is now "~> 1.2"

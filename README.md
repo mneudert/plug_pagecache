@@ -52,8 +52,9 @@ config :plug_pagecache,
       auto_expire: 3600
     ],
     my_ets_cache: [
-      adapter: Plug.PageCache.Adapter.ETS,
-      table:   :my_ets_table
+      adapter:     Plug.PageCache.Adapter.ETS,
+      auto_expire: 3600,
+      table:       :my_ets_table
     ]
 ```
 
@@ -122,6 +123,8 @@ Uses an `ets table` to serve reseponses.
 
 Responses are stored in a `:named_table` you have to configure
 using the `:table` key.
+
+Optionally takes an `:auto_expire` value as entry lifetime in seconds.
 
 
 ## License
