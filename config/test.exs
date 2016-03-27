@@ -11,5 +11,5 @@ config :plug_pagecache,
     ],
     ets: [
       adapter: Plug.PageCache.Adapter.ETS,
-      table:   :plug_pagecache_foo
+      table:   :plug_pagecache_ets
     ]
