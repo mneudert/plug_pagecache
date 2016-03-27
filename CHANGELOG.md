@@ -2,6 +2,9 @@
 
 ## v0.2.0-dev
 
+- Enhancements
+    - Agent caches can auto expire keys after configurable seconds
+
 - Backwards incompatible changes
     - Minimum required elixir version is now "~> 1.2"
     - Minimum required erlang version is now "~> 18.0"

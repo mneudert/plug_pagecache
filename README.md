@@ -48,7 +48,8 @@ use Mix.Config
 config :plug_pagecache,
   :caches,
     my_agent_cache: [
-      adapter: Plug.PageCache.Adapter.Agent
+      adapter:     Plug.PageCache.Adapter.Agent,
+      auto_expire: 3600
     ],
     my_ets_cache: [
       adapter: Plug.PageCache.Adapter.ETS,
@@ -112,6 +113,8 @@ request = :clean
 Uses a plain `GenServer` to serve responses directly from memory (== state).
 
 Requires no additional configuration.
+
+Optionally takes an `:auto_expire` value as entry lifetime in seconds.
 
 ### Plug.PageCache.Adapter.ETS
 
