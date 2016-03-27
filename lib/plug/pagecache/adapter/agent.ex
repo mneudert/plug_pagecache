@@ -5,7 +5,13 @@ defmodule Plug.PageCache.Adapter.Agent do
 
   use Plug.PageCache.Adapter
 
+
+  # Adapter lifecycle
+
   def init(_opts), do: { :ok, %{} }
+
+
+  # Adapter methods
 
   def clean(_state),           do: { %{}, :ok }
   def load(state, path),       do: { state, Map.get(state, path, nil) }

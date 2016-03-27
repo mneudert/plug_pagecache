@@ -7,6 +7,9 @@ defmodule Plug.PageCache.Adapter.ETS do
 
   require Logger
 
+
+  # Adapter lifecycle
+
   def init(opts) do
     ets_tid = case opts[:table] do
       nil ->
@@ -20,6 +23,8 @@ defmodule Plug.PageCache.Adapter.ETS do
     { :ok, %{ ets_tid: ets_tid }}
   end
 
+
+  # Adapter methods
 
   def clean(state) do
     _ = :ets.delete_all_objects(state.ets_tid)
