@@ -23,7 +23,7 @@ Add the plug as a dependency to your `mix.exs` file:
 
 ```elixir
 defp deps do
-  [ { :plug_pagecache, "~> 0.1" } ]
+  [ { :plug_pagecache, "~> 0.2" } ]
 end
 ```
 

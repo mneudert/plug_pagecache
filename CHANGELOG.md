@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.2.0-dev
+## v0.2.0 (2016-03-27)
 
 - Enhancements
     - Agent caches can auto expire keys after configurable seconds
