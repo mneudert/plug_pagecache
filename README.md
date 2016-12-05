@@ -119,7 +119,7 @@ Optionally takes an `:auto_expire` value as entry lifetime in seconds.
 
 ### Plug.PageCache.Adapter.ETS
 
-Uses an `ets table` to serve reseponses.
+Uses an `ets table` to serve responses.
 
 Responses are stored in a `:named_table` you have to configure
 using the `:table` key.
