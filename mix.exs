@@ -8,7 +8,7 @@ defmodule Plug.PageCache.Mixfile do
       name:    "Plug.PageCache",
       version: "0.3.0-dev",
       elixir:  "~> 1.2",
-      deps:    deps,
+      deps:    deps(),
 
       build_embedded:  Mix.env == :prod,
       start_permanent: Mix.env == :prod,
@@ -20,8 +20,8 @@ defmodule Plug.PageCache.Mixfile do
       ],
 
       description:   "Plug for full page response caching",
-      docs:          docs,
-      package:       package,
+      docs:          docs(),
+      package:       package(),
       test_coverage: [ tool: ExCoveralls ] ]
   end
 

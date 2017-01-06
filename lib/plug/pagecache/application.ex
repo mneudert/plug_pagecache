@@ -10,9 +10,9 @@ defmodule Plug.PageCache.Application do
   def start(_type, _args) do
     import Supervisor.Spec
 
-    options  = [ strategy: :one_for_one, name: __MODULE__.Supervisor ]
+    options = [ strategy: :one_for_one, name: __MODULE__.Supervisor ]
 
-    Supervisor.start_link(cache_workers, options)
+    Supervisor.start_link(cache_workers(), options)
   end
 
   defp cache_workers do
