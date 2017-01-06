@@ -35,7 +35,7 @@ defmodule Plug.PageCache.Mixfile do
     [ { :ex_doc, ">= 0.0.0", only: :dev },
 
       { :dialyze,     "~> 0.2", only: :test },
-      { :excoveralls, "~> 0.5", only: :test },
+      { :excoveralls, "~> 0.6", only: :test },
 
       { :cowboy, "~> 1.0", optional: true },
       { :plug,   "~> 1.0", optional: true } ]
