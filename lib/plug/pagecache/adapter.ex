@@ -52,20 +52,23 @@ defmodule Plug.PageCache.Adapter do
   @doc """
   Cleans a cache by removing all entries.
   """
-  @callback clean(state :: Keyword.t) :: :ok
+  @callback clean(state :: map) :: { new_state :: map, :ok }
 
   @doc """
   Tries to load a page from the cache by its full path.
   """
-  @callback load(state :: Keyword.t, path :: String.t) :: String.t | nil
+  @callback load(state :: map,
+                 path  :: String.t) :: { new_state :: map, String.t | nil }
 
   @doc """
   Removes a cache entry.
   """
-  @callback remove(state :: Keyword.t, path :: String.t) :: :ok
+  @callback remove(state :: map, path :: String.t) :: { new_state :: map, :ok }
 
   @doc """
   Saves a page to the cache.
   """
-  @callback save(state :: Keyword.t, path :: String.t, page :: String.t) :: :ok
+  @callback save(state :: map,
+                 path  :: String.t,
+                 page  :: String.t) :: { new_state :: map, :ok }
 end
