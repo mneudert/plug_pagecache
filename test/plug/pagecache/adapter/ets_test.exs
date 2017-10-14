@@ -6,12 +6,14 @@ defmodule Plug.PageCache.Adapter.ETSTest do
   alias Plug.PageCache.Adapter.ETS
 
   test "warning if configuration is faulty" do
-    opts = [ name: :faulty_config ]
-    log  = capture_io :user, fn ->
-      ETS.start_link(opts)
+    opts = [name: :faulty_config]
 
-      :timer.sleep(50)
-    end
+    log =
+      capture_io(:user, fn ->
+        ETS.start_link(opts)
+
+        :timer.sleep(50)
+      end)
 
     assert String.contains?(log, to_string(opts[:name]))
   end

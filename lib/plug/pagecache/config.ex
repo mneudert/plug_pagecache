@@ -7,11 +7,11 @@ defmodule Plug.PageCache.Config do
   Returns the internal id for a cache.
   """
   @spec cache_id(atom) :: atom
-  def cache_id(name), do: :"plug_pagecache_#{ name }"
+  def cache_id(name), do: :"plug_pagecache_#{name}"
 
   @doc """
   Returns all configured caches with their options.
   """
-  @spec caches() :: Keyword.t
+  @spec caches() :: Keyword.t()
   def caches, do: Application.get_env(:plug_pagecache, :caches, [])
 end

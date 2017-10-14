@@ -17,58 +17,54 @@ defmodule Plug.PageCache.Adapter do
       It will be registered under the id generated from its name
       by `Plug.PageCache.Config.cache_id/1`.
       """
-      @spec start_link(Keyword.t) :: GenServer.on_start
+      @spec start_link(Keyword.t()) :: GenServer.on_start()
       def start_link(opts) do
         GenServer.start_link(__MODULE__, opts, name: opts[:id])
       end
 
       def handle_call(:clean, _from, state) do
-        { state, res } = clean(state)
+        {state, res} = clean(state)
 
-        { :reply, res, state }
+        {:reply, res, state}
       end
 
-      def handle_call({ :load, path }, _from, state) do
-        { state, res } = load(state, path)
+      def handle_call({:load, path}, _from, state) do
+        {state, res} = load(state, path)
 
-        { :reply, res, state }
+        {:reply, res, state}
       end
 
-      def handle_call({ :remove, path }, _from, state) do
-        { state, res } = remove(state, path)
+      def handle_call({:remove, path}, _from, state) do
+        {state, res} = remove(state, path)
 
-        { :reply, res, state }
+        {:reply, res, state}
       end
 
-      def handle_call({ :save, path, page }, _from, state) do
-        { state, res } = save(state, path, page)
+      def handle_call({:save, path, page}, _from, state) do
+        {state, res} = save(state, path, page)
 
-        { :reply, res, state }
+        {:reply, res, state}
       end
     end
   end
 
-
   @doc """
   Cleans a cache by removing all entries.
   """
-  @callback clean(state :: map) :: { new_state :: map, :ok }
+  @callback clean(state :: map) :: {new_state :: map, :ok}
 
   @doc """
   Tries to load a page from the cache by its full path.
   """
-  @callback load(state :: map,
-                 path  :: String.t) :: { new_state :: map, String.t | nil }
+  @callback load(state :: map, path :: String.t()) :: {new_state :: map, String.t() | nil}
 
   @doc """
   Removes a cache entry.
   """
-  @callback remove(state :: map, path :: String.t) :: { new_state :: map, :ok }
+  @callback remove(state :: map, path :: String.t()) :: {new_state :: map, :ok}
 
   @doc """
   Saves a page to the cache.
   """
-  @callback save(state :: map,
-                 path  :: String.t,
-                 page  :: String.t) :: { new_state :: map, :ok }
+  @callback save(state :: map, path :: String.t(), page :: String.t()) :: {new_state :: map, :ok}
 end
