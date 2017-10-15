@@ -27,7 +27,7 @@ defmodule Plug.PageCache.Mixfile do
   def application do
     [
       applications: [:logger],
-      mod: {Plug.PageCache.Application, []}
+      mod: {Plug.PageCache.App, []}
     ]
   end
 

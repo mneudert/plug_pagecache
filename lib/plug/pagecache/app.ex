@@ -1,4 +1,4 @@
-defmodule Plug.PageCache.Application do
+defmodule Plug.PageCache.App do
   @moduledoc """
   PageCache Application.
   """
