@@ -10,16 +10,14 @@ defmodule Plug.PageCache.Mixfile do
       version: "0.3.0-dev",
       elixir: "~> 1.2",
       deps: deps(),
-      build_embedded: Mix.env() == :prod,
-      start_permanent: Mix.env() == :prod,
+      description: "Plug for full page response caching",
+      docs: docs(),
+      package: package(),
       preferred_cli_env: [
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.travis": :test
       ],
-      description: "Plug for full page response caching",
-      docs: docs(),
-      package: package(),
       test_coverage: [tool: ExCoveralls]
     ]
   end
