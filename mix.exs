@@ -8,7 +8,7 @@ defmodule Plug.PageCache.Mixfile do
       app: :plug_pagecache,
       name: "Plug.PageCache",
       version: "0.3.0-dev",
-      elixir: "~> 1.2",
+      elixir: "~> 1.3",
       deps: deps(),
       description: "Plug for full page response caching",
       docs: docs(),
