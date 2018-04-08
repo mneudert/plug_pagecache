@@ -32,7 +32,7 @@ defmodule Plug.PageCache.Mixfile do
   defp deps do
     [
       {:ex_doc, ">= 0.0.0", only: :dev},
-      {:excoveralls, "~> 0.6", only: :test},
+      {:excoveralls, "~> 0.8", only: :test},
       {:cowboy, "~> 1.0", optional: true},
       {:plug, "~> 1.0", optional: true}
     ]
